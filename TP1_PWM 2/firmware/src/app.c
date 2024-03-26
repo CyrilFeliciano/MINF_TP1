@@ -236,11 +236,7 @@ void APP_Tasks(void)
     {
         /* État initial de l'application. */
         case APP_STATE_INIT:
-        {
-            static uint8_t compteurInit = 0;
-            
-            if(compteurInit == 0)
-            {
+        {            
                 // Initialisation de l'afficheur LCD
                 lcd_init();
                 lcd_bl_on();
@@ -262,10 +258,7 @@ void APP_Tasks(void)
                 // Initialise le générateur de PWM
                 GPWM_Initialize(&pData);
                 
-                // Incrémente le compteur d'initialisation pour n'exécuter ces étapes qu'une seule fois
-                compteurInit++;
-            }
-            
+          
             // Mettre à jour l'état du switch
             APP_UpdateState(APP_STATE_WAIT);
             break;
