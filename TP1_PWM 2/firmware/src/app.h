@@ -52,19 +52,13 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-#include <stdint.h>
-#include <stdbool.h>
+
 #include <stddef.h>
 #include <stdlib.h>
 #include "system_config.h"
 #include "system_definitions.h"
 
 
-#include "bsp.h"
-#include "Mc32DriverAdcAlt.h"
-#include "Mc32DriverLcd.h"
-#include "C:\microchip\harmony\v2_06\bsp\pic32mx_skes\Mc32DriverAdc.h"
-#include "gestPWM.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -95,7 +89,7 @@ typedef enum
 {
 	/* Application's state machine's initial state. */
 	APP_STATE_INIT=0,
-    APP_STATE_WAIT=1,
+    	APP_STATE_WAIT,
 	APP_STATE_SERVICE_TASKS,    
 
 	/* TODO: Define states used by the application state machine. */
@@ -210,8 +204,64 @@ void APP_Initialize ( void );
  */
 
 void APP_Tasks( void );
+
+// *****************************************************************************
+/* Fonction :
+    void APP_UpdateState(APP_STATES NewState)
+
+  Résumé :
+    Met à jour l'état global de l'application.
+
+  Description :
+    Cette fonction met à jour l'état global du switch avec la nouvelle
+    valeur spécifiée en tant que paramètre. Elle doit être appelée pour changer
+    l'état de l'application selon les besoins de la logique de la machine à états.
+
+  Remarques :
+    La variable globale appData.state est mise à jour directement avec la nouvelle
+    valeur spécifiée en paramètre. Aucune valeur de retour n'est fournie, car la
+    modification est effectuée directement sur la variable globale d'état.
+
+    Cette fonction est utilisée pour faciliter la gestion de l'état de l'application
+    dans la machine à états principale de l'application.
+*/
+// *****************************************************************************
 void APP_UpdateState (APP_STATES NewState);
+
+/* 
+Auteur : Cyril Feliciano
+
+Fonction :
+void EteindreLEDS(void)
+
+Description :
+Cette fonction éteint chaque LED individuellement en appelant la fonction
+BSP_LEDOff avec l'identifiant de chaque LED (de BSP_LED_0 à BSP_LED_7).
+Elle peut être utilisée pour mettre tous les indicateurs lumineux dans un
+état éteint.
+ */
 void EteindreLEDS (void);
+
+// *****************************************************************************
+/* Fonction :
+    void callback_timer1(void)
+
+  Résumé :
+    Fonction de rappel du timer 1.
+
+  Description :
+    Cette fonction est appelée à chaque déclenchement du timer 1, qui est
+    configuré pour des déclenchements tous les 100 ms. Elle maintient un
+    compteur statique, et lorsqu'il atteint la valeur 30 (soit après 3 secondes),
+    elle déclenche un changement d'état de l'application vers APP_STATE_SERVICE_TASKS
+    en appelant la fonction APP_UpdateState elle reappelle cette tout les 100ms 
+
+  Remarques :
+    - La fonction est probablement associée à un timer configuré pour des
+      déclenchements périodiques tous les 100 ms.
+
+*/
+// *****************************************************************************
 void callback_timer1 (void);
 
 
