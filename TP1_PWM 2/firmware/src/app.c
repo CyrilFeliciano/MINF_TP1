@@ -182,14 +182,13 @@ void APP_UpdateState(APP_STATES NewState)
 // *****************************************************************************
 void EteindreLEDS(void)
 {
-    BSP_LEDOff(BSP_LED_0);
-    BSP_LEDOff(BSP_LED_1);
-    BSP_LEDOff(BSP_LED_2);
-    BSP_LEDOff(BSP_LED_3);
-    BSP_LEDOff(BSP_LED_4);
-    BSP_LEDOff(BSP_LED_5);
-    BSP_LEDOff(BSP_LED_6);
-    BSP_LEDOff(BSP_LED_7);
+    //Déclaration de variable
+    uint8_t indexLed = 0;
+  
+    for (indexLed = 0; indexLed <= 8; indexLed++)
+    {
+      BSP_LEDOff(indexLed);
+    }
 }
 
 
