@@ -77,18 +77,18 @@ S_pwmSettings pData;
 /* Fonction :
     void __ISR(_TIMER_1_VECTOR, ipl4AUTO) IntHandlerDrvTmrInstance0(void)
 
-  Résumé :
+  RÃ©sumÃ© :
     Gestionnaire d'interruption pour le Timer 1. 
 
   Description :
-    Ce gestionnaire d'interruption est déclenché lorsque le Timer 1 génère une
-    interruption (tout les 20ms). Il est utilisé pour mettre à jour
-    l'état de l'application afficher des informations sur l'afficheur LCD, exécuter la
+    Ce gestionnaire d'interruption est dÃ©clenchÃ© lorsque le Timer 1 gÃ©nÃ¨re une
+    interruption (tout les 20ms). Il est utilisÃ© pour mettre Ã  jour
+    l'Ã©tat de l'application afficher des informations sur l'afficheur LCD, exÃ©cuter la
     modulation de largeur d'impulsion (PWM), et appeler une fonction de
     rappel timer1.
 
   Remarques :
-    - APP_UpdateState(APP_STATE_INIT) est appelé pendant les 3 premières secondes.
+    - APP_UpdateState(APP_STATE_INIT) est appelÃ© pendant les 3 premiÃ¨res secondes.
 
 */
 // *****************************************************************************
@@ -97,15 +97,14 @@ void __ISR(_TIMER_1_VECTOR, ipl4AUTO) IntHandlerDrvTmrInstance0(void)
     static uint8_t compteur3s = 0;
     static uint8_t compteurClearLine = 0;
 
-    // Pendant les 3 premières secondes
+    // Pendant les 3 premiÃ¨res secondes
     if (compteur3s < 149)
     {
-        APP_UpdateState(APP_STATE_INIT);
         compteur3s++;
     }
     else
     {
-        // Après les 3 premières secondes
+        // AprÃ¨s les 3 premiÃ¨res secondes
 
         // Affiche des informations sur l'afficheur LCD
         if (compteurClearLine <= 0)
@@ -115,10 +114,10 @@ void __ISR(_TIMER_1_VECTOR, ipl4AUTO) IntHandlerDrvTmrInstance0(void)
             compteurClearLine++;
         }
 
-        // Allume la LED BSP_LED_0 pendant l'exécution des tâches
+        // Allume la LED BSP_LED_0 pendant l'exÃ©cution des tÃ¢ches
         BSP_LEDOn(BSP_LED_0);
 
-        // Obtient les paramètres PWM, les affiche et exécute la PWM
+        // Obtient les paramÃ¨tres PWM, les affiche et exÃ©cute la PWM
         GPWM_GetSettings(&pData);
         GPWM_DispSettings(&pData);
         GPWM_ExecPWM(&pData);
@@ -126,7 +125,7 @@ void __ISR(_TIMER_1_VECTOR, ipl4AUTO) IntHandlerDrvTmrInstance0(void)
         // Appelle une fonction de rappel timer1
         callback_timer1();
 
-        // Éteint la LED BSP_LED_0 après l'exécution des tâches
+        // Ã‰teint la LED BSP_LED_0 aprÃ¨s l'exÃ©cution des tÃ¢ches
         BSP_LEDOff(BSP_LED_0);
     }
 
@@ -138,12 +137,12 @@ void __ISR(_TIMER_1_VECTOR, ipl4AUTO) IntHandlerDrvTmrInstance0(void)
 /* Fonction :
     void __ISR(_TIMER_2_VECTOR, ipl0AUTO) IntHandlerDrvTmrInstance1(void)
 
-  Résumé :
+  RÃ©sumÃ© :
     Gestionnaire d'interruption pour le Timer 2.
 
   Description :
-    Ce gestionnaire d'interruption est déclenché lorsque le Timer 2 génère une
-    interruption. Il est utilisé pour effacer le drapeau d'interruption du Timer 2.
+    Ce gestionnaire d'interruption est dÃ©clenchÃ© lorsque le Timer 2 gÃ©nÃ¨re une
+    interruption. Il est utilisÃ© pour effacer le drapeau d'interruption du Timer 2.
 
 */
 // *****************************************************************************
@@ -157,12 +156,12 @@ void __ISR(_TIMER_2_VECTOR, ipl0AUTO) IntHandlerDrvTmrInstance1(void)
 /* Fonction :
     void __ISR(_TIMER_3_VECTOR, ipl0AUTO) IntHandlerDrvTmrInstance2(void)
 
-  Résumé :
+  RÃ©sumÃ© :
     Gestionnaire d'interruption pour le Timer 3.
 
   Description :
-    Ce gestionnaire d'interruption est déclenché lorsque le Timer 3 génère une
-    interruption. Il est utilisé pour effacer le drapeau d'interruption du Timer 3.
+    Ce gestionnaire d'interruption est dÃ©clenchÃ© lorsque le Timer 3 gÃ©nÃ¨re une
+    interruption. Il est utilisÃ© pour effacer le drapeau d'interruption du Timer 3.
 
 */
 // *****************************************************************************
@@ -176,29 +175,29 @@ void __ISR(_TIMER_3_VECTOR, ipl0AUTO) IntHandlerDrvTmrInstance2(void)
 /* Fonction :
     void __ISR(_TIMER_4_VECTOR, ipl7AUTO) IntHandlerDrvTmrInstance3(void)
 
-  Résumé :
+  RÃ©sumÃ© :
     Gestionnaire d'interruption pour le Timer 4.
 
   Description :
-    Ce gestionnaire d'interruption est déclenché lorsque le Timer 4 génère une
-    interruption (35us). Il est utilisé pour exécuter la modulation de largeur d'impulsion
-    (PWM) logiciel et allumer/éteindre une LED BSP_LED_1 pendant son exécution.
+    Ce gestionnaire d'interruption est dÃ©clenchÃ© lorsque le Timer 4 gÃ©nÃ¨re une
+    interruption (35us). Il est utilisÃ© pour exÃ©cuter la modulation de largeur d'impulsion
+    (PWM) logiciel et allumer/Ã©teindre une LED BSP_LED_1 pendant son exÃ©cution.
 
   Remarques :
-    - Appelle la fonction GPWM_ExecPWMSoft pour exécuter la PWM logiciel.
+    - Appelle la fonction GPWM_ExecPWMSoft pour exÃ©cuter la PWM logiciel.
  
 
 */
 // *****************************************************************************
 void __ISR(_TIMER_4_VECTOR, ipl7AUTO) IntHandlerDrvTmrInstance3(void)
 {
-    // Allume la LED BSP_LED_1 pendant l'exécution de la PWM logiciel
+    // Allume la LED BSP_LED_1 pendant l'exÃ©cution de la PWM logiciel
     BSP_LEDOn(BSP_LED_1);
 
-    // Exécute la PWM logiciel
+    // ExÃ©cute la PWM logiciel
     GPWM_ExecPWMSoft(&pData);
 
-    // Éteint la LED BSP_LED_1 après l'exécution de la PWM logiciel
+    // Ã‰teint la LED BSP_LED_1 aprÃ¨s l'exÃ©cution de la PWM logiciel
     BSP_LEDOff(BSP_LED_1);
 
     // Efface le drapeau d'interruption du Timer 4
