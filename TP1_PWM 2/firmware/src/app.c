@@ -55,7 +55,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 #include "app.h"
 #include "gestPWM.h"
-#include <stdint.h>
 #include <stdbool.h>
 #include "bsp.h"
 #include "Mc32DriverAdcAlt.h"
