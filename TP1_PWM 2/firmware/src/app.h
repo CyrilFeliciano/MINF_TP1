@@ -46,6 +46,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #ifndef _APP_H
 #define _APP_H
 
+#define NBRLEDS 8
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Included Files
