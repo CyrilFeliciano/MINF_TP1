@@ -59,6 +59,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "bsp.h"
 #include "Mc32DriverAdcAlt.h"
 #include "Mc32DriverLcd.h"
+#include "stdint.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -185,7 +186,7 @@ void EteindreLEDS(void)
     //Déclaration de variable
     uint8_t indexLed = 0;
   
-    for (indexLed = 0; indexLed <= 8; indexLed++)
+    for (indexLed = 0; indexLed <= NBRLEDS; indexLed++)
     {
       BSP_LEDOff(indexLed);
     }
