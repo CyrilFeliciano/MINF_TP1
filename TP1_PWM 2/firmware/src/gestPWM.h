@@ -25,6 +25,7 @@
 #define PLAGEOC3 9000
 #define PLAGE_ABS_ANGLE_MAX 180
 #define OFFSET_OC3 2999
+#define CENT_CYCLES 100
 
 typedef struct {
     uint8_t absSpeed;    // vitesse 0 à 99
