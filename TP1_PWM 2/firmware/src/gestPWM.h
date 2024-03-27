@@ -21,6 +21,10 @@
 /*--------------------------------------------------------*/
 #define TAILLE_MOYENNE_ADC 10
 #define DEMITOUR 90
+#define POURCENTAGE_PWM_OC2 100
+#define PLAGEOC3 9000
+#define PLAGE_ABS_ANGLE_MAX 180
+#define OFFSET_OC3 2999
 
 typedef struct {
     uint8_t absSpeed;    // vitesse 0 à 99
