@@ -118,7 +118,7 @@ void GPWM_GetSettings(S_pwmSettings *pData)
 
     // Stockage des valeurs converties dans la structure de paramètres
     pData->absAngle = valeur_ServoMoteur_Angle;
-    valeur_ServoMoteur_Angle = (valeur_ServoMoteur_Angle - 90);
+    valeur_ServoMoteur_Angle = (valeur_ServoMoteur_Angle - DEMITOUR);
     pData->AngleSetting = valeur_ServoMoteur_Angle;
     pData->SpeedSetting = valeur_Moteur_DC_Speed;
     pData->absSpeed = abs(valeur_Moteur_DC_Speed);
