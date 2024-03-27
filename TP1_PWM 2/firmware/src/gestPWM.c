@@ -13,6 +13,7 @@
 
 #include "GestPWM.h"
 #include <stdint.h>
+#include "app.h"
 
 // *****************************************************************************
 /* Fonction :
