@@ -15,7 +15,6 @@
 
 #include <stdint.h>
 #include<math.h>
-#include "peripheral/oc/plib_oc.h"
 
 /*--------------------------------------------------------*/
 // Définition des fonctions prototypes
