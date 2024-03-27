@@ -16,6 +16,7 @@
 #include "app.h"
 #include "Mc32DriverLcd.h"
 #include "peripheral/oc/plib_oc.h"
+#include "sys_ports_static.h"
 
 // *****************************************************************************
 /* Fonction :
