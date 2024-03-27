@@ -72,7 +72,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-S_pwmSettings pData;
+S_pwmSettings PWMData;
 
 
 // *****************************************************************************
@@ -112,9 +112,9 @@ void __ISR(_TIMER_1_VECTOR, ipl4AUTO) IntHandlerDrvTmrInstance0(void)
         BSP_LEDOn(BSP_LED_0);
 
         // Obtient les paramètres PWM, les affiche et exécute la PWM
-        GPWM_GetSettings(&pData);
-        GPWM_DispSettings(&pData);
-        GPWM_ExecPWM(&pData);
+        GPWM_GetSettings(&PWMData);
+        GPWM_DispSettings(&PWMData);
+        GPWM_ExecPWM(&PWMData);
 
         // Appelle une fonction de rappel timer1
         callback_timer1();
