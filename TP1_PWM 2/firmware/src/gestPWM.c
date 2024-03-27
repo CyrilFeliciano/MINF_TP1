@@ -97,7 +97,7 @@ void GPWM_GetSettings(S_pwmSettings *pData)
     valeur_ADC1[indexMoyenneGlissante] = appDataPWM.AdcRes.Chan0;
     valeur_ADC2[indexMoyenneGlissante] = appDataPWM.AdcRes.Chan1;
     indexMoyenneGlissante++;
-    if (indexMoyenneGlissante > 9)
+    if (indexMoyenneGlissante >= TAILLE_MOYENNE_ADC)
     {
         indexMoyenneGlissante = 0;
     }
