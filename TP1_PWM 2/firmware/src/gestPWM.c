@@ -227,16 +227,19 @@ void GPWM_ExecPWM(S_pwmSettings *pData)
     {
         PLIB_PORTS_PinSet(PORTS_ID_0, AIN1_HBRIDGE_PORT, AIN1_HBRIDGE_BIT);
         PLIB_PORTS_PinClear(PORTS_ID_0, AIN2_HBRIDGE_PORT, AIN2_HBRIDGE_BIT);
+        PLIB_PORTS_PinSet(PORTS_ID_0, STBY_HBRIDGE_PORT, STBY_HBRIDGE_BIT);
     }
     else if (pData->SpeedSetting > 0)
     {
         PLIB_PORTS_PinClear(PORTS_ID_0, AIN1_HBRIDGE_PORT, AIN1_HBRIDGE_BIT);
         PLIB_PORTS_PinSet(PORTS_ID_0, AIN2_HBRIDGE_PORT, AIN2_HBRIDGE_BIT);
+        PLIB_PORTS_PinSet(PORTS_ID_0, STBY_HBRIDGE_PORT, STBY_HBRIDGE_BIT);
     }
     else
     {
         PLIB_PORTS_PinClear(PORTS_ID_0, AIN1_HBRIDGE_PORT, AIN1_HBRIDGE_BIT);
         PLIB_PORTS_PinClear(PORTS_ID_0, AIN2_HBRIDGE_PORT, AIN2_HBRIDGE_BIT);
+        PLIB_PORTS_PinClear(PORTS_ID_0, STBY_HBRIDGE_PORT, STBY_HBRIDGE_BIT);
     }
 
     // Calcul de la largeur d'impulsion (Pulse Width) pour la sortie OC2 en fonction de la vitesse
