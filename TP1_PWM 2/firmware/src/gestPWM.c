@@ -144,7 +144,7 @@ void GPWM_GetSettings(S_pwmSettings *pData)
 void GPWM_DispSettings(S_pwmSettings *pData)
 {
      static uint8_t compteurClearLine = 0;
-
+    
     
     // Affiche des informations sur l'afficheur LCD
     if (compteurClearLine <= 0)
@@ -152,28 +152,33 @@ void GPWM_DispSettings(S_pwmSettings *pData)
         lcd_ClearLine(2);
         lcd_ClearLine(3);
         compteurClearLine++;
+        
+        lcd_gotoxy(1, 2);
+        printf_lcd("SpeedSetting");
+        lcd_gotoxy(1, 3);
+        printf_lcd("absSpeed");
+        lcd_gotoxy(1, 4);
+        printf_lcd("Angle");
+        
     }
     
     // Affichage de la vitesse
-    lcd_gotoxy(1, 2);
+    lcd_gotoxy(14, 2);
     if (pData->SpeedSetting < 0)
     {
-        printf_lcd("SpeedSetting -%2d", abs(pData->SpeedSetting));
+        printf_lcd("-%2d", abs(pData->SpeedSetting));
     }
     else
     {
-        printf_lcd("SpeedSetting +%2d", pData->SpeedSetting);
+        printf_lcd("+%2d", pData->SpeedSetting);
     }
 
     // Affichage de la valeur absolue de la vitesse
-    lcd_gotoxy(1, 3);
-    printf_lcd("absSpeed");
+    
     lcd_gotoxy(14, 3);
     printf_lcd("+%2d", pData->absSpeed);
 
     // Affichage de l'angle
-    lcd_gotoxy(1, 4);
-    printf_lcd("Angle");
     lcd_gotoxy(14, 4);
     if (pData->AngleSetting < 0)
     {
