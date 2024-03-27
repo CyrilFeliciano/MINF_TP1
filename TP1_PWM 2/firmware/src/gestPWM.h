@@ -20,7 +20,8 @@
 /*--------------------------------------------------------*/
 // Définition des fonctions prototypes
 /*--------------------------------------------------------*/
-#define TAILLE_MOYENNE_ADC 10  
+#define TAILLE_MOYENNE_ADC 10
+#define DEMITOUR 90
 
 typedef struct {
     uint8_t absSpeed;    // vitesse 0 à 99
