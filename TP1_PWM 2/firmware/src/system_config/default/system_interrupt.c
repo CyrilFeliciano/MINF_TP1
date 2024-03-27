@@ -97,7 +97,7 @@ S_pwmSettings pData;
 void __ISR(_TIMER_1_VECTOR, ipl4AUTO) IntHandlerDrvTmrInstance0(void)
 {
     static uint8_t compteur3s = 0;
-    static uint8_t compteurClearLine = 0;
+    
 
     // Pendant les 3 premières secondes
     if (compteur3s < TEMPSINIT)
@@ -107,14 +107,6 @@ void __ISR(_TIMER_1_VECTOR, ipl4AUTO) IntHandlerDrvTmrInstance0(void)
     else
     {
         // Après les 3 premières secondes
-
-        // Affiche des informations sur l'afficheur LCD
-        if (compteurClearLine <= 0)
-        {
-            lcd_ClearLine(2);
-            lcd_ClearLine(3);
-            compteurClearLine++;
-        }
 
         // Allume la LED BSP_LED_0 pendant l'exécution des tâches
         BSP_LEDOn(BSP_LED_0);
