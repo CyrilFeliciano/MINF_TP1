@@ -102,7 +102,6 @@ void __ISR(_TIMER_1_VECTOR, ipl4AUTO) IntHandlerDrvTmrInstance0(void)
     // Pendant les 3 premières secondes
     if (compteur3s < TEMPSINIT)
     {
-        APP_UpdateState(APP_STATE_INIT);
         compteur3s++;
     }
     else
