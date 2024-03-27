@@ -89,7 +89,6 @@ void GPWM_GetSettings(S_pwmSettings *pData)
     uint16_t somme1 = 0;
     uint16_t somme2 = 0;
     uint16_t moyen_ADC1, moyen_ADC2;
-    int16_t valeur_Moteur_DC_Speed, valeur_ServoMoteur_Angle;
     APP_DATA appDataPWM;
 
     // Lire les valeurs du convertisseur analogique-numérique
@@ -112,16 +111,12 @@ void GPWM_GetSettings(S_pwmSettings *pData)
     moyen_ADC2 = somme2 / TAILLE_MOYENNE_ADC;
 
     // Conversion des valeurs ADC en unités appropriées
-    valeur_Moteur_DC_Speed = ((198 * moyen_ADC1) / 1023) + 0.5;
-    valeur_Moteur_DC_Speed = valeur_Moteur_DC_Speed - 99;
-    valeur_ServoMoteur_Angle = ((180 * moyen_ADC2) / 1023) + 0.5;
+     pData->SpeedSetting = (((198 * moyen_ADC1) / 1023) + 0.5) - 99;
+    pData->absAngle = ((180 * moyen_ADC2) / 1023) + 0.5;
 
     // Stockage des valeurs converties dans la structure de paramètres
-    pData->absAngle = valeur_ServoMoteur_Angle;
-    valeur_ServoMoteur_Angle = (valeur_ServoMoteur_Angle - DEMITOUR);
-    pData->AngleSetting = valeur_ServoMoteur_Angle;
-    pData->SpeedSetting = valeur_Moteur_DC_Speed;
-    pData->absSpeed = abs(valeur_Moteur_DC_Speed);
+    pData->AngleSetting = pData->absAngle - DEMITOUR;
+    pData->absSpeed = abs( pData->SpeedSetting);
 }
 
 
