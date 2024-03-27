@@ -247,7 +247,7 @@ void GPWM_ExecPWM(S_pwmSettings *pData)
     PLIB_OC_PulseWidth16BitSet(OC_ID_2, PulseWidthOC2);
 
     // Calcul de la largeur d'impulsion (Pulse Width) pour la sortie OC3 en fonction de l'angle
-    PulseWidthOC3 = ((pData->absAngle * 9000) / 180) + 2999;
+    PulseWidthOC3 = ((pData->absAngle * 9000) / 180) + OFFSET_OC3 ;
     PLIB_OC_PulseWidth16BitSet(OC_ID_3, PulseWidthOC3);
 }
  
