@@ -90,12 +90,12 @@ void GPWM_GetSettings(S_pwmSettings *pData)
     uint16_t somme2 = 0;
     uint16_t moyen_ADC1, moyen_ADC2;
     int16_t valeur_Moteur_DC_Speed, valeur_ServoMoteur_Angle;
-    APP_DATA appData;
+    APP_DATA appDataPWM;
 
     // Lire les valeurs du convertisseur analogique-numérique
-    appData.AdcRes = BSP_ReadADCAlt();
-    valeur_ADC1[indexMoyenneGlissante] = appData.AdcRes.Chan0;
-    valeur_ADC2[indexMoyenneGlissante] = appData.AdcRes.Chan1;
+    appDataPWM.AdcRes = BSP_ReadADCAlt();
+    valeur_ADC1[indexMoyenneGlissante] = appDataPWM.AdcRes.Chan0;
+    valeur_ADC2[indexMoyenneGlissante] = appDataPWM.AdcRes.Chan1;
     indexMoyenneGlissante++;
     if (indexMoyenneGlissante > 9)
     {
