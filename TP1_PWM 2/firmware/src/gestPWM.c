@@ -14,6 +14,7 @@
 #include "GestPWM.h"
 #include <stdint.h>
 #include "app.h"
+#include "Mc32DriverLcd.h"
 
 // *****************************************************************************
 /* Fonction :
