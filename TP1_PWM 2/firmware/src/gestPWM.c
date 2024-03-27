@@ -294,7 +294,7 @@ void GPWM_ExecPWMSoft(S_pwmSettings *pData)
     compteurRpc++;
 
     // Remet à zéro le compteurRpc s'il dépasse la valeur 99
-    if (compteurRpc > 99)
+    if (compteurRpc >= CENT_CYCLES)
     {
         compteurRpc = 0;
     }
