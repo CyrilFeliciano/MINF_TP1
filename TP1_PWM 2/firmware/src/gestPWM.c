@@ -48,12 +48,12 @@ void GPWM_Initialize(S_pwmSettings *pData)
     BSP_EnableHbrige();
     
     // Lance les timers et les sorties de comparaison (OC - Output Compare)
+    DRV_OC0_Start();
+    DRV_OC1_Start();
     DRV_TMR0_Start();
     DRV_TMR1_Start();
     DRV_TMR2_Start();
     DRV_TMR3_Start();
-    DRV_OC0_Start();
-    DRV_OC1_Start();
 }
 
 // *****************************************************************************
@@ -81,10 +81,10 @@ void GPWM_Initialize(S_pwmSettings *pData)
 void GPWM_GetSettings(S_pwmSettings *pData)	
 {
     // Lecture du convertisseur AD
-    static uint32_t valeur_ADC1[TAILLE_MOYENNE_ADC] = {0};
-    static uint32_t valeur_ADC2[TAILLE_MOYENNE_ADC] = {0};
-    static uint32_t i = 0;
-    uint8_t n;
+    static uint16_t valeur_ADC1[TAILLE_MOYENNE_ADC] = {0};
+    static uint16_t valeur_ADC2[TAILLE_MOYENNE_ADC] = {0};
+    static uint16_t indexMoyenneGlissante = 0;
+    uint8_t indexTailleMoyenneADC;
     uint32_t somme1 = 0;
     uint32_t somme2 = 0;
     uint32_t moyen_ADC1, moyen_ADC2;
@@ -93,19 +93,19 @@ void GPWM_GetSettings(S_pwmSettings *pData)
 
     // Lire les valeurs du convertisseur analogique-numérique
     appData.AdcRes = BSP_ReadADCAlt();
-    valeur_ADC1[i] = appData.AdcRes.Chan0;
-    valeur_ADC2[i] = appData.AdcRes.Chan1;
-    i++;
-    if (i > 9)
+    valeur_ADC1[indexMoyenneGlissante] = appData.AdcRes.Chan0;
+    valeur_ADC2[indexMoyenneGlissante] = appData.AdcRes.Chan1;
+    indexMoyenneGlissante++;
+    if (indexMoyenneGlissante > 9)
     {
-        i = 0;
+        indexMoyenneGlissante = 0;
     }
 
     // Calculer la moyenne des échantillons pour lisser le signal
-    for (n = 0; n < TAILLE_MOYENNE_ADC; n++)
+    for (indexTailleMoyenneADC = 0; indexTailleMoyenneADC < TAILLE_MOYENNE_ADC; indexTailleMoyenneADC++)
     {
-        somme1 += valeur_ADC1[n];
-        somme2 += valeur_ADC2[n];
+        somme1 += valeur_ADC1[indexTailleMoyenneADC];
+        somme2 += valeur_ADC2[indexTailleMoyenneADC];
     }
     moyen_ADC1 = somme1 / TAILLE_MOYENNE_ADC;
     moyen_ADC2 = somme2 / TAILLE_MOYENNE_ADC;
