@@ -84,7 +84,7 @@ void GPWM_GetSettings(S_pwmSettings *pData)
     static uint16_t valeur_ADC1[TAILLE_MOYENNE_ADC] = {0};
     static uint16_t valeur_ADC2[TAILLE_MOYENNE_ADC] = {0};
     static uint16_t indexMoyenneGlissante = 0;
-    uint8_t indexTailleMoyenneADC;
+    uint8_t indexValeurMoyenneADC;
     uint32_t somme1 = 0;
     uint32_t somme2 = 0;
     uint32_t moyen_ADC1, moyen_ADC2;
@@ -102,10 +102,10 @@ void GPWM_GetSettings(S_pwmSettings *pData)
     }
 
     // Calculer la moyenne des échantillons pour lisser le signal
-    for (indexTailleMoyenneADC = 0; indexTailleMoyenneADC < TAILLE_MOYENNE_ADC; indexTailleMoyenneADC++)
+    for (indexValeurMoyenneADC = 0; indexValeurMoyenneADC < TAILLE_MOYENNE_ADC; indexValeurMoyenneADC++)
     {
-        somme1 += valeur_ADC1[indexTailleMoyenneADC];
-        somme2 += valeur_ADC2[indexTailleMoyenneADC];
+        somme1 += valeur_ADC1[indexValeurMoyenneADC];
+        somme2 += valeur_ADC2[indexValeurMoyenneADC];
     }
     moyen_ADC1 = somme1 / TAILLE_MOYENNE_ADC;
     moyen_ADC2 = somme2 / TAILLE_MOYENNE_ADC;
