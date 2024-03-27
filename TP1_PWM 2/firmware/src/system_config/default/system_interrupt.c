@@ -64,6 +64,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "system_definitions.h"
 #include <stdint.h>
 
+#define TEMPSINIT 149
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: System Interrupt Vector Functions
@@ -98,7 +100,7 @@ void __ISR(_TIMER_1_VECTOR, ipl4AUTO) IntHandlerDrvTmrInstance0(void)
     static uint8_t compteurClearLine = 0;
 
     // Pendant les 3 premières secondes
-    if (compteur3s < 149)
+    if (compteur3s < TEMPSINIT)
     {
         APP_UpdateState(APP_STATE_INIT);
         compteur3s++;
