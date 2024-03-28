@@ -115,8 +115,8 @@ void GPWM_GetSettings(S_pwmSettings *pData)
     moyen_ADC2 = somme2 / TAILLE_MOYENNE_ADC;
 
     // Conversion des valeurs ADC en unités appropriées
-     pData->SpeedSetting = (((198 * moyen_ADC1) / 1023) + 0.5) - 99;
-    pData->absAngle = ((180 * moyen_ADC2) / 1023) + 0.5;
+     pData->SpeedSetting = (((198.0 * moyen_ADC1) / 1023) + 0.5) - 99;
+    pData->absAngle = ((180.0 * moyen_ADC2) / 1023) + 0.5;
 
     // Stockage des valeurs converties dans la structure de paramètres
     pData->AngleSetting = pData->absAngle - DEMITOUR;
